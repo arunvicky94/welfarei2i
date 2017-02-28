@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal">
+          <fieldset>
+            <legend class="text-center">Fund Request</legend>
+
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Name</label>
+              <div class="col-md-9">
+                <input id="name" name="name" type="text" placeholder="Your name"
+                  ng-model="FormCtrl.fundRequest.name" class="form-control">
+              </div>
+            </div>
+
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email">Amount</label>
+              <div class="col-md-9">
+                <input type="number" placeholder="Enter amount"
+                  ng-model="FormCtrl.fundRequest.amount" class="form-control">
+              </div>
+            </div>
+
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Reason for fund</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="message" name="message"
+                  ng-model="FormCtrl.fundRequest.reason" placeholder="Please enter your reason here..." rows="5">
+                </textarea>
+              </div>
+            </div>
+
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" ng-click="FormCtrl.requestFund()" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+	</div>
+</div>

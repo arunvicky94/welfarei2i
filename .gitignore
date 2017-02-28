@@ -1,0 +1,16 @@
+
+node_modules/
+npm-debug.log
+bower_components/*
+/public/bower_components/*
+bin/.DS_Store
+server/routes/.DS_Store
+server/models/.DS_Store
+.project
+public/css/build/
+public/js/build/
+public/templates.js
+ 
+ 
+ 
+

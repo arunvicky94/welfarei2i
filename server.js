@@ -1,8 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 var app = express();
 
+require('./config/passport');
+
+app.use(passport.initialize());
 
 app.use(express.static('public'));
 
@@ -11,25 +15,15 @@ app.use(bodyParser.urlencoded({
    extended: true
 }));
 
-// app.post("/api/user", function(req, res) {
-//   console.log("server calling");
-//   console.log(req.body);
-//   var user = new User (req.body);
-//   user.save();
-//   console.log(user);
-//   User.find({
-//       "name": "arun"
-//   }, function(err, users) {
-//       if (err) {
-//           console.log("error");
-//       }
-//       console.log(users[0]);
-//   })
-//   res.end();
-//  });
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 
 var listener = app.listen(3003, function(){
-     console.log('Listening on port ' + listener.address().port); //Listening on port 3030
+     console.log('Listening on port ' + listener.address().port); //Listening on port 3003
  });
 
  var db = mongoose.connect('mongodb://localhost:27017/test');

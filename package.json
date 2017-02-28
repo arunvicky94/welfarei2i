@@ -14,5 +14,10 @@
     "mongo"
   ],
   "author": "arun",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^7.3.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
 }

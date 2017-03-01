@@ -25,10 +25,6 @@ exports.create = function(req, res) {
         })
         var token;
         token = user.generateJwt();
-        // res.status(200);
-        // res.json({
-        //   "token" : token
-        // });
     return res.json({"token" : token}).status(200);
   });
 };

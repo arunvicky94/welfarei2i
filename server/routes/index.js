@@ -15,6 +15,13 @@ module.exports = function(app) {
         .post(user.create);
     app.route('/api/login')
         .post(user.login);
+    app.route('/api/funds')
+        .get(fund.getFunds);
     app.route('/api/fund')
-        .post(auth, fund.request);
+        .put(fund.acceptFund)
+        .post(auth, fund.request)
+    app.route('/api/fund/:userId')
+        // .post(auth, fund.request)
+        .get(fund.getFundByUserId);
+    app.param('userId', fund.getFundByUserId);
 };

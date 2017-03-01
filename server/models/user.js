@@ -14,10 +14,10 @@ var userSchema = new Schema({
         required: true,
         unique: true
      },
-     funds:[{
-         type: Schema.ObjectId,
-         ref: 'Fund'
-     }],
+     role:{
+         type: String,
+         default:"employee"
+     },
      hash: String,
      salt: String
 });
@@ -41,6 +41,7 @@ userSchema.methods.generateJwt = function() {
     _id: this._id,
     email: this.email,
     name: this.name,
+    role: this.role,
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET");
 };

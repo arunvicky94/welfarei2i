@@ -26,7 +26,7 @@ var listener = app.listen(3003, function(){
      console.log('Listening on port ' + listener.address().port); //Listening on port 3003
  });
 
- var db = mongoose.connect('mongodb://localhost:27017/test');
+ var db = mongoose.connect('mongodb://localhost:27017/welfarei2i');
 
  mongoose.connection.once('connected', function() {
 	console.log("Connected to database");

@@ -1,7 +1,7 @@
 angular
     .module('welfareApp',['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-      $urlRouterProvider.otherwise('/home')
+      $urlRouterProvider.otherwise('/home/login')
       $stateProvider
           .state('home', {
               url: '/home',
@@ -20,7 +20,17 @@ angular
           }).state('home.form', {
               url: '/form',
               templateUrl: 'views/requestForm.html',
-              controller: 'FormController',
-              controllerAs: 'FormCtrl'
+              controller: 'FundController',
+              controllerAs: 'FundCtrl'
+          }).state('home.funds', {
+              url: '/funds',
+              templateUrl: 'views/fundgrid.html',
+              controller: 'FundController',
+              controllerAs: 'FundCtrl'
+          }).state('home.adminPage', {
+              url: '/admin',
+              templateUrl: 'views/adminPage.html',
+              controller: 'AdminControll',
+              controllerAs: 'AdmiCtrl'
           });
     }]);

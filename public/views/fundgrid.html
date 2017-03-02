@@ -1,10 +1,6 @@
-<!-- Order by:
-<select ng-model="booking.orderOption">
-    <option value="name">name</option>
-    <option value="seat">seat</option>
-</select> -->
-<div id="loginbox" style="padding-top:50px;" ng-init="FundCtrl.getFundByUserId()">
-<input type="text" ng-model="booking.search.name" placeholder="Search fund">
+<div id="loginbox" style="padding-top:50px;" ng-init="FundCtrl.getFundByUserId()" >
+<!-- <input type="text" ng-model="booking.search.name" placeholder="Search fund"> -->
+<button type="submit" ui-sref="home.form" class="btn btn-primary">Request Fund</button>
 <!-- Table for editing booking details -->
 <table class="table table-striped table-bordered">
     <thead>
@@ -13,11 +9,11 @@
             <th>AMOUNT</th>
             <th>REASON</th>
             <th>STATUS</th>
-            <th>REMOVE</th>
+            <th>DATE & TIME</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="fund in FundCtrl.funds | filter:booking.search | orderBy:booking.orderOption" >
+        <tr ng-repeat="fund in FundCtrl.funds | orderBy:FundCtrl.status" >
             <td>
                 <span ng-bind="fund.name"></span>
             </td>
@@ -31,10 +27,7 @@
                 <span ng-bind="fund.status"></span>
             </td>
             <td>
-                <i ng-click="FundCtrl.removefund($index)" class="glyphicon glyphicon-edit"></i>
-            </td>
-            <td>
-                <i ng-click="FundCtrl.removefund($index)" class="glyphicon glyphicon-trash"></i>
+              <span ng-bind="fund.date"></span>
             </td>
         </tr>
     </tbody>

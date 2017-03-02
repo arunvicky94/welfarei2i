@@ -3,9 +3,7 @@ module.exports = function(app) {
   var jwt = require('express-jwt');
   var auth = jwt({
     secret: 'MY_SECRET',
-    getToken: function getUserToken (req) {
-      return req.body.token;
-    }
+    userProperty: 'payload'
     });
 
     var user = require('../controllers/userController');
@@ -16,12 +14,12 @@ module.exports = function(app) {
     app.route('/api/login')
         .post(user.login);
     app.route('/api/funds')
-        .get(fund.getFunds);
+        .get(auth, fund.getFunds);
     app.route('/api/fund')
-        .put(fund.acceptFund)
-        .post(auth, fund.request)
+        .put(auth, fund.updateFund)
+        .post(auth, fund.requestFund)
     app.route('/api/fund/:userId')
         // .post(auth, fund.request)
-        .get(fund.getFundByUserId);
+        .get(auth, fund.getFundByUserId);
     app.param('userId', fund.getFundByUserId);
 };

@@ -8,7 +8,7 @@
             </div>
          </div>
          <div class="panel-body" >
-            <form id="signupform" class="form-horizontal" role="form">
+            <form name="loginFrom" class="form-horizontal" role="form" ng-submit="SignupCtrl.saveUser()">
                <div id="signupalert" style="display:none" class="alert alert-danger">
                   <p>Error:</p>
                   <span></span>
@@ -16,28 +16,28 @@
                <div class="form-group">
                   <label for="firstname" class="col-md-3 control-label">Name</label>
                   <div class="col-md-9">
-                     <input type="text" class="form-control" name="firstname"
-                       ng-model="SignupCtrl.user.name" placeholder="Name">
+                     <input type="text" class="form-control" name="name"
+                       ng-model="SignupCtrl.user.name" placeholder="Name" ng-required="true">
                   </div>
                </div>
                <div class="form-group">
                   <label for="email" class="col-md-3 control-label">Email</label>
                   <div class="col-md-9">
                      <input type="email" class="form-control" name="email"
-                       ng-model="SignupCtrl.user.email" placeholder="Email Address">
+                       ng-model="SignupCtrl.user.email" placeholder="Email Address" ng-required="true">
                   </div>
                </div>
                <div class="form-group">
                   <label for="password" class="col-md-3 control-label">Password</label>
                   <div class="col-md-9">
-                     <input type="password" class="form-control" name="passwd"
-                       ng-model="SignupCtrl.user.password" placeholder="Password">
+                     <input type="password" class="form-control" name="passwor"
+                       ng-model="SignupCtrl.user.password" placeholder="Password" ng-required="true">
                   </div>
                </div>
                <div class="form-group">
                   <!-- Button -->
                   <div class="col-md-offset-3 col-md-9">
-                     <button id="btn-signup" type="button" class="btn btn-info" ng-click="SignupCtrl.saveUser()">Sign Up</button>
+                     <button id="btn-signup" type="submit" class="btn btn-info" >Sign Up</button>
                   </div>
                </div>
             </form>

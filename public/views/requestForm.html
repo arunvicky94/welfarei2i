@@ -2,7 +2,7 @@
 	<div class="row" style="margin-top:50px;">
       <div class="col-md-6 col-md-offset-3">
         <div class="well well-sm">
-          <form class="form-horizontal">
+          <form class="form-horizontal" ng-submit="FundCtrl.requestFund()">
           <fieldset>
             <legend class="text-center">Fund Request</legend>
 
@@ -11,7 +11,7 @@
               <label class="col-md-3 control-label" for="name">Name</label>
               <div class="col-md-9">
                 <input id="name" name="name" type="text" placeholder="Your name"
-                  ng-model="FundCtrl.fundRequest.name" class="form-control">
+                  ng-model="FundCtrl.fundRequest.name" class="form-control" ng-required="true">
               </div>
             </div>
 
@@ -19,8 +19,8 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="email">Amount</label>
               <div class="col-md-9">
-                <input type="number" placeholder="Enter amount"
-                  ng-model="FundCtrl.fundRequest.amount" class="form-control">
+                <input type="number" placeholder="Enter amount" min="1000" max="5000"
+                  ng-model="FundCtrl.fundRequest.amount" class="form-control" ng-required="true">
               </div>
             </div>
 
@@ -28,7 +28,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="message">Reason for fund</label>
               <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message"
+                <textarea class="form-control" id="message" name="message" ng-required="true"
                   ng-model="FundCtrl.fundRequest.reason" placeholder="Please enter your reason here..." rows="5">
                 </textarea>
               </div>
@@ -37,8 +37,8 @@
             <!-- Form actions -->
             <div class="form-group">
               <div class="col-md-12 text-right">
-								<button type="submit" ui-sref="home.funds" class="btn btn-primary btn-lg">Funds</button>
-                <button type="submit" ng-click="FundCtrl.requestFund()" class="btn btn-primary btn-lg">Submit</button>
+								<button type="button" ui-sref="home.funds" class="btn btn-primary">Funds</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </fieldset>

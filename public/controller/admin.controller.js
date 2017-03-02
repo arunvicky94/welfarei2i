@@ -1,20 +1,23 @@
 angular
     .module('welfareApp')
-    .controller('AdminControll', function($rootScope, adminService, $rootScope, $window) {
+    .controller('AdminControll', function($window, adminService) {
       var vm = this;
       vm.fundRequest = {};
 
       vm.getFunds = function() {
         console.log("get functioncontrolle calling");
-        console.log($rootScope.token);
+        console.log($window.localStorage['user-token']);
         adminService.getFunds()
         .then(function(response){
            console.log(response);
            vm.funds = response.data;
+        }, function(error){
+          alert("Unable to get fund details"
+           + " : " + error.status + " : " +  error.statusText);
         });
       }
       vm.getUser = function(){
-        payload = $rootScope.token.split('.')[1];
+        payload = $window.localStorage['user-token'].split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
         console.log(payload);
@@ -23,11 +26,25 @@ angular
       vm.acceptFund = function (fund) {
           console.log("admit edit calling" + fund);
             console.log(fund);
-          adminService.acceptFund(fund)
+            fund.status = "Accept";
+          adminService.updateFund(fund)
           .then(function(response){
             console.log(response);
+          }, function(error) {
+            alert("Unable to accept fund request. please try again"
+             + " : " + error.status + " : " +  error.statusText);
           });
-
       }
-
+      vm.rejectFund = function (fund) {
+          console.log("admit edit calling" + fund);
+            fund.status = "Reject";
+            console.log(fund);
+          adminService.updateFund(fund)
+          .then(function(response){
+            console.log(response);
+          }, function(error){
+            alert("Unable to reject fund request. please try again"
+             + " : " + error.status + " : " +  error.statusText);
+          });
+      }
     });

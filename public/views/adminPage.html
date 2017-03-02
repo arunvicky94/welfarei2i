@@ -3,7 +3,7 @@
     <option value="name">name</option>
     <option value="seat">seat</option>
 </select> -->
-<div id="loginbox" style="padding-top:50px;" ng-init="AdmiCtrl.getFunds()">
+<div id="loginbox" style="padding-top:50px;" ng-init="AdminCtrl.getFunds()">
 <input type="text" ng-model="booking.search.name" placeholder="Search fund">
 <!-- Table for editing booking details -->
 <table class="table table-striped table-bordered">
@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="fund in AdmiCtrl.funds | filter:booking.search | orderBy:booking.orderOption" >
+        <tr ng-repeat="fund in AdminCtrl.funds | orderBy:fund.status" >
             <td>
                 <span ng-bind="fund.name"></span>
             </td>
@@ -32,10 +32,14 @@
                 <span ng-bind="fund.status"></span>
             </td>
             <td>
-                <i ng-click="AdmiCtrl.acceptFund(fund)" class="glyphicon glyphicon-edit"></i>
+              <a class="btn btn-success">
+                <i ng-click="AdminCtrl.acceptFund(fund)" class="glyphicon glyphicon-saved"></i>
+              </a>
             </td>
             <td>
-                <i ng-click="AdmiCtrl.removefund(fund)" class="glyphicon glyphicon-trash"></i>
+              <a class="btn btn-danger">
+                <i ng-click="AdminCtrl.rejectFund(fund)" class="glyphicon glyphicon-trash"></i>
+              </a>
             </td>
         </tr>
     </tbody>

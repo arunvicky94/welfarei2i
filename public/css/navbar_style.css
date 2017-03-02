@@ -29,6 +29,10 @@ padding: 10px 35px;
 {
 background-color: #04A3ED;
 }
+.menu  .navbar-nav >  li >  a:active
+{
+background-color: #04A3ED;
+}
 
 .navbar-header > a
 {

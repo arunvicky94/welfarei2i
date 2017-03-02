@@ -1,0 +1,67 @@
+<form name="pasengerForm" ng-submit="booking.addPasenger(pasengerForm)" novalidate>
+    <!-- Pasenger details table-->
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>NAME</td>
+            <td>
+                <input type="text" class="form-control" ng-model="booking.pasenger.name" ng-model-options="{updateOn : blur}"
+                 name="pasengerName" ng-minlength="3" ng-maxlength="8" ng-required="true" />
+                <span ng-show="booking.error" ng-messages="pasengerForm.pasengerName.$error">
+                    <span ng-message="minlength">Your name is too short.</span>
+                    <span ng-message="maxlength">Your name is too long.</span>
+                    <span ng-message="required">Your name is required.</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>EMAIL-ID</td>
+            <td>
+                <input type="email" class="form-control" ng-model="booking.pasenger.email" ng-model-options="{updateOn : blur}"
+                    name="pasengerMail" ng-required="true" />
+                <span ng-show="booking.error" ng-messages="pasengerForm.pasengerMail.$error">
+                    <span ng-message="email">Enter valid email id</span>
+                    <span ng-message="required">Email is required.</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>MOBILE-NO</td>
+            <td>
+                <input type="number" class="form-control" ng-model="booking.pasenger.mobile" ng-model-options="{updateOn : blur}"
+                    name="pasengerNo" ng-minlength="10" ng-maxlength="10" ng-required="true" />
+                <span ng-show="booking.error" ng-messages="pasengerForm.pasengerNo.$error">
+                <span ng-message="minlength">Enter 10 digit mobile number.</span>
+                <span ng-message="maxlength">Enter 10 digit valid mobile number.</span>
+                <span ng-message="required">Mobile number is required.</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>AGE</td>
+            <td>
+                <input type="number" class="form-control" ng-model="booking.pasenger.age" ng-model-options="{updateOn : blur}"
+                    name="pasengerAge" ng-maxlength="2" ng-required="true" />
+                <span ng-show="booking.error" ng-messages="pasengerForm.pasengerAge.$error">
+                <span ng-message="maxlength">Enter correct age.</span>
+                <span ng-message="required">Age is required.</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>SEATS</td>
+            <td>
+                <input type="number" class="form-control" ng-model="booking.pasenger.seat" ng-model-options="{updateOn : blur}"
+                    name="pasengerSeat" ng-maxlength="1" ng-required="true" />
+                <span ng-show="booking.error" ng-messages="pasengerForm.pasengerSeat.$error">
+                    <div ng-message="maxlength">Select seats upto 9 only</div>
+                    <span ng-message="required">Select seats.</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="2">
+                <input type="submit" name="submit" bvalue="Save" class="btn btn-primary">
+            </td>
+        </tr>
+    </table>
+</form>

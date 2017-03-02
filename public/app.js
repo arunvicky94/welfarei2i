@@ -6,7 +6,8 @@ angular
           .state('home', {
               url: '/home',
               templateUrl: 'views/home.html',
-              // controller: 'LoginCtrl'
+              controller: 'LoginController',
+              controllerAs: 'LoginCtrl'
           }).state('home.login', {
               url: '/login',
               templateUrl: 'views/login.html',
@@ -31,6 +32,6 @@ angular
               url: '/admin',
               templateUrl: 'views/adminPage.html',
               controller: 'AdminControll',
-              controllerAs: 'AdmiCtrl'
+              controllerAs: 'AdminCtrl'
           });
     }]);

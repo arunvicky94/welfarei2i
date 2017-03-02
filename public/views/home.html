@@ -1,13 +1,28 @@
-<div class="menu" style="position:fixed">
+ <div class="menu" style="position:fixed">
     <div class="container-fluid">
 		<div class="navbar-header">
 			<a href="#">WELFARE I2I</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ui-sref="home.signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="#" ui-sref="home.login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="#" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li ng-hide="LoginCtrl.showNav">
+           <a ui-sref="home.signup">
+             <span class="glyphicon glyphicon-user"></span>
+              Sign Up
+            </a>
+          </li>
+				<li ng-hide="LoginCtrl.showNav">
+          <a ui-sref="home.login">
+            <span class="glyphicon glyphicon-log-in"></span>
+             Login
+           </a>
+         </li>
+        <li ng-show="LoginCtrl.showNav">
+          <a ng-click="LoginCtrl.logoutUser()">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Logout
+          </a>
+        </li>
 			</ul>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 angular
     .module('welfareApp')
-    .controller('AdminControll', function($window, adminService) {
+    .controller('AdminControll', function($window, adminService, $rootScope) {
       var vm = this;
       vm.fundRequest = {};
 
@@ -16,6 +16,21 @@ angular
            + " : " + error.status + " : " +  error.statusText);
         });
       }
+
+      vm.getFundsByStatus = function (status) {
+          $rootScope.showNav = true;
+          console.log("get functioncontrolle calling");
+          console.log($window.localStorage['user-token']);
+          adminService.getFundsByStatus(status)
+              .then(function (response) {
+                  console.log(response);
+                  vm.funds = response.data;
+              }, function (error) {
+                  alert("Unable to get fund details" + " : "
+                  + error.status + " : " + error.statusText);
+              });
+      }
+
       vm.getUser = function(){
         payload = $window.localStorage['user-token'].split('.')[1];
         payload = $window.atob(payload);
@@ -23,6 +38,7 @@ angular
         console.log(payload);
         return payload;
       }
+
       vm.acceptFund = function (fund) {
           console.log("admit edit calling" + fund);
             console.log(fund);
@@ -35,6 +51,7 @@ angular
              + " : " + error.status + " : " +  error.statusText);
           });
       }
+
       vm.rejectFund = function (fund) {
           console.log("admit edit calling" + fund);
             fund.status = "Reject";

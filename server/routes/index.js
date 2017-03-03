@@ -13,8 +13,9 @@ module.exports = function(app) {
         .post(user.create);
     app.route('/api/login')
         .post(user.login);
-    app.route('/api/funds')
-        .get(auth, fund.getFunds);
+    app.route('/api/funds/:status')
+        .get(auth, fund.getFundsBystatus);
+    app.param('status', fund.getFundsBystatus);
     app.route('/api/fund')
         .put(auth, fund.updateFund)
         .post(auth, fund.requestFund)

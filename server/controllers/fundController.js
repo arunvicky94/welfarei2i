@@ -83,6 +83,24 @@ exports.getFundByUserId = function (req, res, next, id) {
     })
 };
 
+exports.getFundsBystatus = function (req, res, next, status) {
+    console.log("-----------get function calling----------");
+    console.log("-----------get function id----------", status);
+    Fund.find({
+        "status": status
+    }, function (err, funds) {
+        if (err) {
+            return res.status(500).json({
+                error: 'Error while fetching funds'
+            });
+        }
+        console.log(funds);
+        return res.status(200).json(funds);
+
+    })
+};
+
+
 exports.getFunds = function (req, res) {
     console.log("-----------get function calling----------");
     console.log("-----------get function id----------");

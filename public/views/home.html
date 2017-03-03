@@ -5,20 +5,25 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-hide="LoginCtrl.showNav">
+				<li ng-hide="showNav">
            <a ui-sref="home.signup">
              <span class="glyphicon glyphicon-user"></span>
               Sign Up
             </a>
           </li>
-				<li ng-hide="LoginCtrl.showNav">
+				<li ng-hide="showNav">
           <a ui-sref="home.login">
             <span class="glyphicon glyphicon-log-in"></span>
              Login
            </a>
          </li>
-        <li ng-show="LoginCtrl.showNav">
-          <a ng-click="LoginCtrl.logoutUser()">
+         <li ng-show="showNav">
+           <a href="">
+             {{userName}}
+           </a>
+         </li>
+        <li ng-show="showNav">
+          <a href="" ng-click="LoginCtrl.logoutUser()">
             <span class="glyphicon glyphicon-log-out"></span>
             Logout
           </a>

@@ -3,14 +3,10 @@ angular
     .controller('FundController', function ($window, userService, fundService, $rootScope, $window) {
         var vm = this;
         vm.fundRequest = {};
-
         vm.requestFund = function () {
             $rootScope.showNav = true;
-            console.log("controlle calling" + vm.fundRequest);
-            console.log($window.localStorage['user-token']);
             fundService.fundRequest({fund: vm.fundRequest, user: vm.getUser() })
                 .then(function (response) {
-                    console.log(response);
                     alert("Your request sent succesfully")
                     vm.fundRequest = {};
                 }, function (error) {
@@ -21,11 +17,8 @@ angular
         }
         vm.getFundByUserId = function () {
             $rootScope.showNav = true;
-            console.log("get functioncontrolle calling");
-            console.log($window.localStorage['user-token']);
             fundService.getFundByUserId(vm.getUser()._id)
                 .then(function (response) {
-                    console.log(response);
                     vm.funds = response.data;
                 }, function (error) {
                     alert("Unable to get fund details" + " : "

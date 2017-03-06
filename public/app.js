@@ -70,6 +70,8 @@ angular
       $rootScope.$on('$stateChangeStart', function(event, toState) {
           console.log('state change');
           if (toState.data.requiresLogin) {
+              console.log(toState.data.requiresLogin);
+              console.log(toState);
               console.log('requiresLogin true');
               if (!$window.localStorage['loggedIn']) {
                   console.log('loggedIn false');

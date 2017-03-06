@@ -5,14 +5,11 @@ angular
         vm.user = {};
         // vm.users = [];
         vm.saveUser = function () {
-            console.log("controlle calling" + vm.user);
             userService.saveUser(vm.user)
                 .then(function (response) {
-                    console.log(response);
                     alert("Your details added succesfully");
                     vm.user = {};
                 }, function (error) {
-                    console.log(error)
                     alert("Error while adding your details. Please try again"
                      + " : " + error.status + " : " + error.statusText);
                     vm.user = {};
@@ -23,9 +20,8 @@ angular
         var vm = this;
         vm.userLogin = {};
         $rootScope.showNav = false;
-        vm.loginUser = function () {
-            console.log("controlle calling" + vm.userLogin);
-            // userService.showNav = true;
+        vm.loginUser = function (loginFrom) {
+            vm.error = false;
             userService.loginUser(vm.userLogin)
                 .then(function (response) {
                     $rootScope.showNav = true;
@@ -65,5 +61,4 @@ angular
                 $rootScope.loggedIn = false;
             }
         }
-
     });

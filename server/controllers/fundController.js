@@ -16,18 +16,13 @@ exports.requestFund = function (req, res) {
         user: fund.user
     }, function (err, funds) {
         if (err) {
-            console.log("error");
+            return res.json(400, err);
         }
-        console.log("----------test controller---------------");
         if (funds.length != 0) {
-            console.log(funds[funds.length - 1]);
             var lastFund = funds[funds.length - 1];
             var lastMonth = lastFund.date.getMonth();
-            console.log("----------lastmonth---------------", lastMonth);
             var currentMonth = new Date().getMonth();
-            console.log("----------currentMonth---------------", currentMonth);
         }
-
         if (lastMonth >= (currentMonth - 1)) {
             console.log("You are not elligible for request fund");
             return res.status(404).json({
@@ -35,7 +30,6 @@ exports.requestFund = function (req, res) {
             });
         } else {
             fund.save(function (err, fund) {
-                console.log("server controller calling");
                 if (err) {
                     console.log("error while adding");
                     return res.json(400, err);
@@ -47,7 +41,6 @@ exports.requestFund = function (req, res) {
 };
 
 exports.updateFund = function (req, res) {
-    console.log(req.body);
     Fund.update({
             _id: req.body._id
         }, {
@@ -56,7 +49,6 @@ exports.updateFund = function (req, res) {
             }
         },
         function (err, funds) {
-            console.log("server controller calling");
             if (err) {
                 console.log("error while adding");
                 return res.json(400, err);
@@ -67,8 +59,6 @@ exports.updateFund = function (req, res) {
 };
 
 exports.getFundByUserId = function (req, res, next, id) {
-    console.log("-----------get function calling----------");
-    console.log("-----------get function id----------", id);
     Fund.find({
         "user": id
     }, function (err, funds) {
@@ -77,15 +67,12 @@ exports.getFundByUserId = function (req, res, next, id) {
                 error: 'Error while fetching funds'
             });
         }
-        console.log(funds);
         return res.status(200).json(funds);
 
     })
 };
 
 exports.getFundsBystatus = function (req, res, next, status) {
-    console.log("-----------get function calling----------");
-    console.log("-----------get function id----------", status);
     Fund.find({
         "status": status
     }, function (err, funds) {
@@ -100,10 +87,7 @@ exports.getFundsBystatus = function (req, res, next, status) {
     })
 };
 
-
 exports.getFunds = function (req, res) {
-    console.log("-----------get function calling----------");
-    console.log("-----------get function id----------");
     Fund.find({}, function (err, funds) {
         if (err) {
             return res.status(500).json({

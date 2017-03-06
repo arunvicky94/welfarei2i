@@ -13,13 +13,6 @@ exports.create = function (req, res) {
     user.setPassword(req.body.password);
 
     user.save(function (err) {
-        console.log("server cont calling");
-        User.find({}, function (err, users) {
-            if (err) {
-                console.log("error");
-            }
-            console.log(users);
-        })
         var token;
         token = user.generateJwt();
         return res.json({
@@ -34,8 +27,6 @@ exports.login = function (req, res) {
         console.log("server cont calling");
         // If Passport throws/catches an error
         if (err) {
-            console.log("err");
-            console.log(err);
             return res.status(404).json(err);
         }
 
